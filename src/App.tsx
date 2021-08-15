@@ -7,37 +7,31 @@ import {
 } from 'react-router-dom';
 // import Loader from 'shareComponent/Loader';
 import ProtectedRoutes from './Routes/ProtectedRoutes'; //Authenticated routes
-import PublicRoute from './Routes/PublicRoutes'; 
-import PrivateRoute from './Routes/PrivateRoutes'; 
+import PublicRoute from './Routes/PublicRoutes';
+import PrivateRoute from './Routes/PrivateRoutes';
 
 const LoginPage = lazy(() => import('./Components/Authenticate/SignUp'));
 const Register = lazy(() => import('./Components/Authenticate/Login'));
 const NoFoundComponent = lazy(() => import('./Components/404NoComponent/NoComponent'));
 
 const App = () => {
-  const isAuthenticated = true;
+  const isAuthenticated = false;
 
   return (
     <Router>
       <Suspense fallback={<div>Loading</div>}>
         <Switch>
-        <PublicRoute
-            path="/register"
-            isAuthenticated={isAuthenticated}
-          >
-            <Register />
-          </PublicRoute>
           <PublicRoute
             path="/login"
             isAuthenticated={isAuthenticated}
           >
             <LoginPage />
           </PublicRoute>
-          
           <PublicRoute
-            path="/forgot-password"
+            path="/register"
             isAuthenticated={isAuthenticated}
           >
+            <Register />
           </PublicRoute>
           <PrivateRoute
             path="/"

@@ -5,7 +5,6 @@ export default function SignUp() {
     const [email, setEmail] = useState("");
     const [password, setPassowrd] = useState("");
     const signUpCallback = () => {
-        console.log("reeeeeeeeeeeeeeeee")
         axios({
             method: "post",
             url: "http://localhost:4000/register",
