@@ -8,6 +8,7 @@ export default function SignUp() {
     const [lastName, setlastName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassowrd] = useState("");
+    const [authenticated, setauthenticated] = useState(false);
     const signUpCallback = () => {
         console.log("Sign Up called");
         axios({
@@ -19,21 +20,24 @@ export default function SignUp() {
                 "email": email,
                 "password": password
             },
-            headers: { 'Content-Type': 'application/json' },
         })
 
             .then(function (response: any) {
-                //handle success
-                console.log(response);
+                if (response["status"] === 200) {
+                    setauthenticated(true);
+                    toSignIn(true)
+                }
             })
             .catch(function (response: any) {
-                //handle error
                 console.log(response);
             });
     }
     if (signIn === true) {
-        return <Redirect to='/login'/>
-      }
+        return <Redirect to='/login' />
+    }
+    if (authenticated === true) {
+        return <Redirect to='/login' />
+    }
 
     return (
         <div className="w-full max-w-xs container mx-auto mt-20">

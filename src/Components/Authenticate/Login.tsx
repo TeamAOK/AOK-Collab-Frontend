@@ -7,7 +7,7 @@ export default function Login() {
     const [signup, toSignUp] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassowrd] = useState("");
-
+    const [authenticated, setauthenticated] = useState(false);
     const signinCallback = () => {
         axios({
             method: "post",
@@ -23,7 +23,7 @@ export default function Login() {
                 if (response["status"] === 200) {
                     localStorage.setItem("email", response["data"]["email"]);
                     localStorage.setItem("token", response["data"]["token"]);
-                    history.push('/home')
+                    setauthenticated(true);
                 }
             })
             .catch(function (response: any) {
@@ -34,6 +34,9 @@ export default function Login() {
     if (signup === true) {
         return <Redirect to='/register'/>
       }
+    if (authenticated === true) {
+        window.location.reload();
+    }
     
 
     return (

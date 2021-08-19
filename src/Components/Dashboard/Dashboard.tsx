@@ -4,7 +4,7 @@ export default function Dashboard() {
     const history = useHistory();
     const logout = () => {
         localStorage.setItem("token" , "");
-        history.push('/login')
+        window.location.reload();
     }
     return (
         <div>

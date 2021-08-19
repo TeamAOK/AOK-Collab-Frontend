@@ -19,7 +19,7 @@ const App = () => {
   return (
     <Router>
       <Suspense fallback={<div>Loading</div>}>
-        <Switch>  
+        <Switch> 
           <PublicRoute
             path="/login"
             isAuthenticated={isAuthenticated}
